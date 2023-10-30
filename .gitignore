@@ -5,3 +5,4 @@ rust.h
 *.a
 *.d
 *.so
+*.gch
