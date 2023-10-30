@@ -59,7 +59,9 @@ int main(int argc, char** argv) {
     ::benchmark::Initialize(&argc, argv);
 
     // Create a vector of test functions and register benchmarks
-    std::vector<TestFunction> sortingFunctions(functions, functions + sizeof(functions) / sizeof(functions[0]));
+    // std::vector<TestFunction> sortingFunctions(functions, functions + sizeof(functions) / sizeof(functions[0]));
+    // std::vector<TestFunction> sortingFunctions(functions, functions + function_count);
+    std::vector<TestFunction> sortingFunctions = functions;
     RegisterSortBenchmarks(sortingFunctions);
 
     ::benchmark::RunSpecifiedBenchmarks();
