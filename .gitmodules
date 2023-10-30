@@ -1,0 +1,9 @@
+[submodule "alphadev"]
+	path = alphadev
+	url = https://github.com/google-deepmind/alphadev.git
+[submodule "cassioneri"]
+	path = cassioneri
+	url = https://github.com/cassioneri/sort3.git
+[submodule "mimicry"]
+	path = mimicry
+	url = https://github.com/mimicry-ai/sort.git
