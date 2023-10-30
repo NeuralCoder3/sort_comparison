@@ -1,0 +1,11 @@
+cmp 1 3
+cmovg 4 3
+cmovg 3 1
+cmovg 1 4
+cmp 2 3
+mov 4 2
+cmovg 2 3
+cmovg 3 4
+cmp 1 2
+cmovg 2 1
+cmovg 1 4
