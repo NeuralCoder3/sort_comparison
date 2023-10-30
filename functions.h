@@ -1,20 +1,14 @@
+#include "interface.h"
 #include "alphadev.h"
 #include "cassioneri.h"
 #include "custom.h"
 #include "mimicry.h"
 #include "rust.h"
+#include "generated/code/generated.h"
 
 #include <array>
 
-using SortingFunction = void (*)(int*);
-
-struct TestFunction {
-    SortingFunction func;
-    std::string name;
-};
-
-TestFunction functions[] = {
-    { sort3_alphadev, "alphadev" },
+TestFunction predefined_functions[] = {
 
     { sort3_cassioneri_14,     "cassioneri_14" },
     { sort3_cassioneri_15,     "cassioneri_15" },
@@ -38,5 +32,26 @@ TestFunction functions[] = {
     { sort3_rust_swap_inline_annotated, "rust_swap_inline_annotated" },
     { sort3_rust_swap_inline_raw, "rust_swap_inline_raw" },
     { sort3_rust_branchless_min_annotated, "rust_branchless_min_annotated" },
-    { sort3_rust_branchless_annotated, "rust_branchless_annotated" }
+    { sort3_rust_branchless_annotated, "rust_branchless_annotated" },
+
+    { sort3_alphadev, "alphadev" },
+    { sort3_alphadev_reorder, "alphadev_reorder" },
+    // { sort3_32_7_1, "32_7_1" },
 };
+
+std::vector<TestFunction> MakeFunctions()
+{
+    std::vector<TestFunction> functions;
+    for (auto& func : predefined_functions) {
+        functions.push_back(func);
+    }
+    for (auto& func : gen_functions) {
+        functions.push_back(func);
+    }
+    return functions;
+}
+
+
+std::vector<TestFunction> functions = MakeFunctions();
+
+// add gen_functions to functions
