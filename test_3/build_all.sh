@@ -2,7 +2,8 @@
 
 
 compiler=("gcc" "clang")
-mode=("debug" "release")
+# mode=("debug" "release")
+mode=("release")
 # compiler=("gcc")
 # mode=("release-symbols")
 build=("make")

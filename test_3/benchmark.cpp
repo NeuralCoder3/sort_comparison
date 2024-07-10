@@ -7,17 +7,9 @@
 #include <iterator>
 #include <random>
 
-auto test_cases = [](){
-    std::minstd_rand generator;
-    std::array<std::array<int32_t, 3>, 32768> ns;
-    std::uniform_int_distribution<> sdist(-10000, 10000);
-    for (auto& n : ns) {
-        n[0] = sdist(generator);
-        n[1] = sdist(generator);
-        n[2] = sdist(generator);
-    }
-    return ns;
-}();
+int test_count = 401;
+
+std::vector<std::array<int32_t, 3>> test_cases; 
 
 static void BenchmarkSortFunction(benchmark::State& state, const TestFunction& testFunc) {
     for (auto _ : state) {
@@ -39,6 +31,23 @@ void RegisterSortBenchmarks(std::vector<TestFunction>& functions) {
 }
 
 int main(int argc, char** argv) {
+    if (argc > 1) {
+        test_count = atoi(argv[1]);
+    }
+
+    std::cout << "test_count = " << test_count << "\n";
+
+    {
+        std::minstd_rand generator;
+        test_cases = std::vector<std::array<int32_t, 3>>(test_count);
+        std::uniform_int_distribution<> sdist(-10000, 10000);
+        for (auto& n : test_cases) {
+            n[0] = sdist(generator);
+            n[1] = sdist(generator);
+            n[2] = sdist(generator);
+        }
+    };
+
     ::benchmark::Initialize(&argc, argv);
 
     RegisterSortBenchmarks(functions);
