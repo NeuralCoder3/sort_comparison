@@ -6,6 +6,7 @@ Sources:
     - https://github.com/cassioneri/sort3
 - [Mimicry-ai](https://github.com/mimicry-ai/sort)
 - Std
+- Our other synthesis repositories
 
 Languages:
 - C++
@@ -43,6 +44,15 @@ void sort3_branchless(int *buffer) {
 }
 ```
 
+Note that our synthesized algorithms (in `generated`) are 10-15% faster than AlphaDev in our benchmarks.
+A big improvement (over AlphaDev) was the reordering of the instructions. 
+Especially, the move from the buffer to the registers at the beginning improves the performance.
+
+Stats:
+- Synthesis in 30s
+- Synthesis of all algorithms in 2h
+
+More information will follow soon.
 
 
-llvm-mca -mcpu=btver2 ./test_mimicry/out/g++.O3/test_correct.s > ./test_mimicry/out/g++.O3/llvm_mca.txt
+<!-- llvm-mca -mcpu=btver2 ./test_mimicry/out/g++.O3/test_correct.s > ./test_mimicry/out/g++.O3/llvm_mca.txt -->
