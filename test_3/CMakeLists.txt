@@ -48,9 +48,33 @@ add_executable(bench
   benchmark.cpp
 )
 
+add_executable(bench4
+  benchmark4.cpp
+)
+
+add_executable(bench5
+  benchmark5.cpp
+)
+
+add_executable(bench_embed
+  benchmark_embed.cpp
+)
+
+add_executable(bench_embed4
+  benchmark_embed4.cpp
+)
+
 target_link_libraries(bench benchmark benchmark_main)
+target_link_libraries(bench_embed benchmark benchmark_main)
+target_link_libraries(bench4 benchmark benchmark_main)
+target_link_libraries(bench_embed4 benchmark benchmark_main)
+target_link_libraries(bench5 benchmark benchmark_main)
 
 # add libsort_rust.a (${CMAKE_SOURCE_DIR}/../rust_sort/target/release/libsort_rust.a)
 # additionally compile .a file into the executable
 
 target_link_libraries(bench ${CMAKE_SOURCE_DIR}/../rust_sort/target/release/libsort_rust.a)
+target_link_libraries(bench_embed ${CMAKE_SOURCE_DIR}/../rust_sort/target/release/libsort_rust.a)
+target_link_libraries(bench4 ${CMAKE_SOURCE_DIR}/../rust_sort/target/release/libsort_rust.a)
+target_link_libraries(bench_embed4 ${CMAKE_SOURCE_DIR}/../rust_sort/target/release/libsort_rust.a)
+target_link_libraries(bench5 ${CMAKE_SOURCE_DIR}/../rust_sort/target/release/libsort_rust.a)
